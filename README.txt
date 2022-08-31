@@ -1,4 +1,28 @@
--- Heroku --
+--- PERN AUTH TODO BACK
+Combining Back & Front Steps
+
+1. Create new DB and new tables
+2. db.js: Change the DB we are using (jwttutorial => authtodolist)
+
+3. dashboard.js: Edit router.get("/") to do joins between the two tables
+
+4. dashboard: Copy-paste 'Create a Todo' from perntodo_back. 
+    Include 'authorization' route. 
+    Change SQL call to take in req.user.id.
+
+5. dashboard: Copy-paste 'Update a Todo'
+    [Do same as "createAtodo"]
+    Note: As-is, it works, but different users can edit other users' data if they know the todo id.
+    To solve this, we must ensure that users can only change todos that match their user_id's.
+    Add in a RETURNING statement.
+    Add in an "AND" clause and an if statement to respond accorningly.
+
+6. dashboard: Copy-paste "Delete a Todo"
+    [Do same as "createAtodo"]
+    Basically, same logic as "Update a Todo."
+
+-- Heroku Deployment --
+
 0. Combine FRONT and BACK files into one directory
 1. Make sure GIT is installed
 2. Download Heroku CLI
@@ -9,3 +33,43 @@
 
 4. Heroku is flexible with file structure, but you MUST have a package.json file in root directory.
     Do this by bringing all contents of backend folder into root directory.
+
+5. Push to GitHub.
+
+--- Configure Main Server file
+
+1. index.js : process.env : Heroku is in charge of environment variables, its going to provide them to us
+    We need to use heroku's port number in index.js since heroku is hosting our site
+
+2. Use NODE_ENV to check if app is in production or not. Use to check when to serve static files.
+
+3. Run 'npm run build' inside client folder to create 'build' directory that stores a production build of the app
+
+4. app.use(express.static(path.join(__dirname, "client/build"))); 
+Serves static files from the 'build' folder, enabling it to be accessed on localhost 5000.
+
+--- Questions
+
+- Whats npm run build? : Runs 'build' from package.json 'scripts' field. 
+    Runs 'react-scripts build.' Creates a 'build' directory.
+    Note: There can only be ONE package.json file in the tree path.
+
+- Dev vs. prod builds : Dev builds are for dev. has Source Maps, Debugging, and one-hot reloading. Prod builds are what run on clinet's machine. Combines source files into one/multiple minimized files, extracts CSS and Images,etc. 
+
+- Whats the 'build' directory for? : It contains a "production build" of your app.
+
+- Whats static content? : Any file stored on a server that is the same everytime its delivered to users.
+
+- Whats the path library? : Interacts/Manipulates file system paths.
+    path.join() formats strings into a filepath structure.
+
+- express.static() : Serves static files like images, CSS, and JS.
+    express.static(root, [options]);
+
+- process.env : Global Variable representing the system emvironment your app on start. Also contains .env file data.
+
+- process.env.NODE_ENV : Returns the environment that an app is running in (development / production)
+
+- __dirname : Local variable that returns directory name of current module/folder path of current JS file
+
+- What is an app in production?
