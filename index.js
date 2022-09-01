@@ -3,7 +3,6 @@ const app = express();
 const cors = require("cors");
 const PORT = process.env.PORT || 5000;
 const path = require("path"); // Work with directory paths
-// process.env.port
 
 // MIDDLEWARE -----
 app.use(express.json());
@@ -11,10 +10,8 @@ app.use(cors()); // Allows different-domain app interaction
 
 app.use(express.static(path.join(__dirname, "client/build")));
 
-// process.env.NODE_ENV => production or undefined
 if (process.env.NODE_ENV === "production") {
-    // Serve static content with express.static()
-    // target the 'build' folder in client
+    // Serve static content here
 
     // _dirname = C:\Users\Carrum\ReactStuff\perntodoauth_heroku
     // path.join(__dirname, "client/build") =             

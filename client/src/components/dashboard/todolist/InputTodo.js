@@ -15,7 +15,7 @@ function InputTodo({ trigGetTodos }) {
       myHeaders.append("token", localStorage.getItem("token"));
 
       if (description.length != 0) {
-        const response = await fetch("http://localhost:5000/dashboard/todos", {
+        const response = await fetch("/dashboard/todos", {
           method: "POST",
           headers: myHeaders,
           body: JSON.stringify({ description: description }),

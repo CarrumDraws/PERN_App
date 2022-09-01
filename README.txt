@@ -21,34 +21,35 @@ Combining Back & Front Steps
     [Do same as "createAtodo"]
     Basically, same logic as "Update a Todo."
 
+
+
 -- Heroku Deployment --
 
-0. Combine FRONT and BACK files into one directory
-1. Make sure GIT is installed
-2. Download Heroku CLI
+-- Client Build / File Structure --
+1. Combine FRONT and BACK files into one directory
+2. Run 'npm run build' inside client folder to create 'build' directory that stores a production build of the app. 
+Note: There can only be ONE package.json file in the tree path- if build fails, there is a package.json file in its parent(s).
+3. Heroku is flexible with file structure, but you MUST have a package.json file in root directory.
+    Do this by bringing all contents of backend folder into root directory.
 
-3. .git folder should be inside root directory (perntodoauth_heroku).
+-- Install New Dependancies --
+1. Download Heroku CLI
+2. Make sure GIT is installed
+3. Use Github : .git folder should be inside root directory (perntodoauth_heroku).
     Inside Bash Terminal, reveal hidden folders with command 'ls -a'
     if .git isnt there, run 'git init'
 
-4. Heroku is flexible with file structure, but you MUST have a package.json file in root directory.
-    Do this by bringing all contents of backend folder into root directory.
+-- Configure Main Server file --
 
-5. Push to GitHub.
+1. index.js : process.env.PORT : Heroku provides envVars to use.
+    We need to use heroku's port number in index.js since heroku is hosting our site.
 
---- Configure Main Server file
+2. index.js : process.env.NODE_ENV : returns if app is in production or not. Use for checking when to serve static files.
 
-1. index.js : process.env : Heroku is in charge of environment variables, its going to provide them to us
-    We need to use heroku's port number in index.js since heroku is hosting our site
+3. app.use(express.static(path.join(__dirname, "client/build"))); 
+Serves static files from the 'build' folder, essentially running 'client' on localhost:5000.
 
-2. Use NODE_ENV to check if app is in production or not. Use to check when to serve static files.
-
-3. Run 'npm run build' inside client folder to create 'build' directory that stores a production build of the app
-
-4. app.use(express.static(path.join(__dirname, "client/build"))); 
-Serves static files from the 'build' folder, enabling it to be accessed on localhost 5000.
-
---- Questions
+--- Questions ---
 
 - Whats npm run build? : Runs 'build' from package.json 'scripts' field. 
     Runs 'react-scripts build.' Creates a 'build' directory.
@@ -68,8 +69,60 @@ Serves static files from the 'build' folder, enabling it to be accessed on local
 
 - process.env : Global Variable representing the system emvironment your app on start. Also contains .env file data.
 
-- process.env.NODE_ENV : Returns the environment that an app is running in (development / production)
-
 - __dirname : Local variable that returns directory name of current module/folder path of current JS file
 
-- What is an app in production?
+-- Configure DB Connection --
+
+1. .env : Create envVars for pool objects in db.js
+
+2. db.js : Create new object 'devConfig' that contains pool values.
+Replace the hardcoded pool values with the envVars you just made.
+
+3. db.js : Create new object 'proConfig' that contains DATABASE_URL
+
+4. Edit 'pool' to take in a 'connectionString' object
+
+-- Questions --
+
+- What is a heroku addon?
+
+- What is proConfig, why is it so short compared to devConfig?
+
+- How do you switch between production and development?
+
+-- SetUp Scripts in package.json --
+
+Heroku runs your scripts in a specific order.
+heroku-prebuild > npm install > heroku-postbuild > start server
+
+1. Add new scripts to the package.json file.
+Note: 'build' folder isnt going to exist by default. We must create it in heroku-postbuild
+We want to: cd into client folder > Install packages > run 'npm run build' > start server
+"heroku-postbuild": "cd client && npm install && npm run build"
+
+-- Questions --
+
+- Why doesn't build exist by default?
+
+-- Setup Proxy in Client Side --
+
+1. All AJAX calls (to localhost:5000) in client are now invalid if server is in production mode. To solve this, use a proxy!
+When sending app to production, proxy is ignored, and our routes will route to the heroku domain.
+
+2. client > package.json > "proxy": "http://localhost:5000"
+
+3. Register/App/Login/Dashboard/EditTodo/InputTodo/ListTodos : remove 'http://localhost:5000' and it will default to proxy.
+
+4. Reset Cache so client calls target 5000 instead of 3000 : Delete client > package-lock and node_modules
+
+-- Questions --
+
+- Whats a proxy
+
+-- Big Brain Observations --
+
+- When deploying app, client should be a child of the server file
+- Client should have a 'build' child directory containing the production version of the client.
+This makes it so client is smaller and faster to send.
+- The server we serve this on is different depending on if were in dev or prod. Dev uses 5000, prod uses heroku's servers. 
+- In order to use heroku's servers, we must utilize heroku.

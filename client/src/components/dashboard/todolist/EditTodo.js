@@ -14,14 +14,11 @@ function EditTodo({ todo, trigGetTodos }) {
       myHeaders.append("Content-Type", "application/json");
       myHeaders.append("token", localStorage.getItem("token"));
 
-      const response = await fetch(
-        `http://localhost:5000/dashboard/todos/${todo.todo_id}`,
-        {
-          method: "PUT",
-          headers: myHeaders,
-          body: JSON.stringify({ description: description }),
-        }
-      );
+      const response = await fetch(`/dashboard/todos/${todo.todo_id}`, {
+        method: "PUT",
+        headers: myHeaders,
+        body: JSON.stringify({ description: description }),
+      });
       let parseRes = await response.json();
       console.log(parseRes);
       trigGetTodos();
