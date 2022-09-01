@@ -109,15 +109,33 @@ We want to: cd into client folder > Install packages > run 'npm run build' > sta
 1. All AJAX calls (to localhost:5000) in client are now invalid if server is in production mode. To solve this, use a proxy!
 When sending app to production, proxy is ignored, and our routes will route to the heroku domain.
 
-2. client > package.json > "proxy": "http://localhost:5000"
+2. client > package.json > "proxy": "http://localhost:5000/"
 
 3. Register/App/Login/Dashboard/EditTodo/InputTodo/ListTodos : remove 'http://localhost:5000' and it will default to proxy.
 
-4. Reset Cache so client calls target 5000 instead of 3000 : Delete client > package-lock and node_modules
+4. Reset Cache so client calls target 5000 instead of 3000 : Delete client > package-lock and node_modules, reinstall all dependancies, restart VSCode. If this still doesn't work, run 'nodemon index --ignore client' in package.json
+
+Application is now ready for deployment.
 
 -- Questions --
 
-- Whats a proxy
+- Whats a proxy : It's a default URL that is set in package.json. It is ignored in production.
+
+-- Setup Engines in package.json and Catchall Method --
+
+Add in package.json: "engines":{"node": "14.17.3", "npm":"6.14.2", }
+(determines version of Node we are using for this app)
+
+! Catchall method (app.get(*)) isn't working, or maybe it is? index.html seems empty.
+! Network tab and localStorage seem to be buggy on static builds...
+
+-- Questions --
+
+- Do i have to npm run build everytime i update client?
+
+-- Deploying to Heroku --
+
+1. Hide .env file- add .env to gitignore. Delete .env from github as well.
 
 -- Big Brain Observations --
 

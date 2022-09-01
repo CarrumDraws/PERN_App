@@ -23,6 +23,7 @@ function App() {
         headers: { token: localStorage.getItem("token") },
       });
       let parseRes = await response.json();
+      console.log("Authorization is " + parseRes);
       parseRes === true ? setAuth(true) : setAuth(false);
     } catch (err) {
       console.log(err);
