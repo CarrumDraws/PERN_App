@@ -81,7 +81,7 @@ heroku-prebuild > npm install > heroku-postbuild > start server
     [ Note: 'build' folder isnt going to exist by default. We must create it in heroku-postbuild ]
     We want to: cd into client folder > install packages > run 'npm run build' > start server
     "heroku-postbuild": "cd client && npm install && npm run build"
-2. package.json: add "engines":{"node": "14.17.3", "npm":"6.14.2" }
+2. package.json: add "engines":{"node": "14.17.3", "npm":"6.14.13" }
     (determines version of Node we are using for this app)
 
 -- Questions --
@@ -121,7 +121,8 @@ Application is now ready for deployment.
 1. Create tables within our heroku postgres. Don't create a new DB, it's already made.
 2. Align remote with herokus remote URL. (?)
     'heroku git:remote -a perntodoauth'
-3. 'git push heroku master' / 'git push heroku HEAD:master' /
+3. Install heroku buildpacks with 'heroku buildpacks:set heroku/nodejs'
+3. 'git push heroku master' / 'git push heroku HEAD:master' /  'git push heroku main'
 
 DONE!
 

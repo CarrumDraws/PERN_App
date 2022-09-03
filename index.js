@@ -8,7 +8,7 @@ const path = require("path"); // Work with directory paths
 app.use(express.json());
 app.use(cors()); // Allows different-domain app interaction
 
-app.use(express.static(path.join(__dirname, "client/build")));
+// app.use(express.static(path.join(__dirname, "client/build")));
 
 if (process.env.NODE_ENV === "production") {
     // Serve static content here
