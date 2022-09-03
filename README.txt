@@ -121,7 +121,7 @@ Application is now ready for deployment.
 1. Create tables within our heroku postgres. Don't create a new DB, it's already made.
 2. Align remote with herokus remote URL. (?)
     'heroku git:remote -a perntodoauth'
-3. 'git push heroku master'
+3. 'git push heroku master' / 'git push heroku HEAD:master' /
 
 DONE!
 
