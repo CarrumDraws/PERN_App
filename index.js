@@ -12,10 +12,6 @@ app.use(express.static(path.join(__dirname, "client/build")));
 
 if (process.env.NODE_ENV === "production") {
     // Serve static content here
-
-    // _dirname = C:\Users\Carrum\ReactStuff\perntodoauth_heroku
-    // path.join(__dirname, "client/build") =             
-        // C:\Users\Carrum\ReactStuff\perntodoauth_heroku\client\build
     app.use(express.static(path.join(__dirname, "client/build")));
 }
 

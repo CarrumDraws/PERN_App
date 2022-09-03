@@ -1,5 +1,8 @@
 CREATE DATABASE authtodolist;
 -- NOTE: For uuid funcs to work, run 'CREATE EXTENSION "uuid-ossp";' in psql
+
+CREATE EXTENSION "uuid-ossp";
+
 CREATE TABLE users(
     user_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     user_name VARCHAR(255) NOT NULL,
