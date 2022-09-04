@@ -122,6 +122,7 @@ Application is now ready for deployment.
 2. Align remote with herokus remote URL. (?)
     'heroku git:remote -a perntodoauth'
 3. Install heroku buildpacks with 'heroku buildpacks:set heroku/nodejs'
+4. npm install --only=dev && npm install && react-scripts build
 3. 'git push heroku master' / 'git push heroku HEAD:master' /  'git push heroku main'
 
 DONE!
