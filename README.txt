@@ -118,14 +118,18 @@ Application is now ready for deployment.
 5. Get Config Vars 'DATABASE_URL' and 'KEY' from Heroku Project Homepage > Settings > ConfigVars
 
 --  Database Management --
+[Note: Delete all client devDependancies]
+[Add script 'start' to package.json]
 1. Create tables within our heroku postgres. Don't create a new DB, it's already made.
 2. Align remote with herokus remote URL. (?)
     'heroku git:remote -a perntodoauth'
 3. Install heroku buildpacks with 'heroku buildpacks:set heroku/nodejs'
 4. npm install --only=dev && npm install && react-scripts build
-3. 'git push heroku master' / 'git push heroku HEAD:master' /  'git push heroku main'
+5. 'git push heroku master' / 'git push heroku main'
 
 DONE!
+
+'heroku open' to open your website!
 
 -- Questions --
 - What does "set git remote heroku' mean?
