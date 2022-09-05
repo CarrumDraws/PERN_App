@@ -17,9 +17,11 @@ const devConfig = `postgres://${process.env.PG_USER}:${process.env.PG_PASSWORD}@
 
 const proConfig = process.env.DATABASE_URL // heroku addons (?)
 
-const pool = new Pool({
-  connectionString : process.env.NODE_ENV === "production" ? proConfig : devConfig
-});
+const pool = new Pool(process.env.NODE_ENV === "production" ? { proConfig } : { devConfig });
+
+// const pool = new Pool({
+//   connectionString : process.env.NODE_ENV === "production" ? proConfig : devConfig
+// });
 
 // const pool = new Pool({
 //   user: "postgres",
