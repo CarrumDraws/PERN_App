@@ -24,7 +24,7 @@ function Register({ setAuth }) {
     e.preventDefault(); // Prevent page refresh when submitting
     try {
       const body = { name, email, password };
-
+      // How to print URL that this gets sent to
       const response = await fetch("/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
