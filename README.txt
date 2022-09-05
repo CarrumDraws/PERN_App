@@ -114,18 +114,19 @@ Application is now ready for deployment.
 2. 'heroku create appname' (perntodoauth is our appname)
 3. Install addon Heroku Postgres, a postgres cloud service : 
     'heroku addons:create heroku-postgresql:hobby-dev -a perntodoauth'
-4. Connect with Heroku Postgres(Go inside psql terminal) : 'heroku pg:psql -a perntodoauth'
-5. Get Config Vars 'DATABASE_URL' and 'KEY' from Heroku Project Homepage > Settings > ConfigVars
 
---  Database Management --
+--  Database Management --    
+4. Connect with Heroku Postgres(Go inside psql terminal) : 'heroku pg:psql -a perntodoauth'
+5. Create tables within our heroku postgres. Don't create a new DB, it's already made.
+
+
 [Note: Delete all client devDependancies]
 [Add script 'start' to package.json]
-1. Create tables within our heroku postgres. Don't create a new DB, it's already made.
-2. Align remote with herokus remote URL. (?)
+1. Align remote with herokus remote URL. (?)
     'heroku git:remote -a perntodoauth'
-3. Install heroku buildpacks with 'heroku buildpacks:set heroku/nodejs'
-4. npm install --only=dev && npm install && react-scripts build
-5. 'git push heroku master' / 'git push heroku main'
+2. Install heroku buildpacks with 'heroku buildpacks:set heroku/nodejs'
+3. npm install --only=dev && npm install && react-scripts build
+4. 'git push heroku master' / 'git push heroku main'
 
 DONE!
 

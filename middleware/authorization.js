@@ -15,7 +15,6 @@ module.exports = async (req, res, next) => {
     next();
   } catch (err) {
     console.log("Authorization Error!")
-    console.log(err.message); // jwt malformed??
     return res.status(403).json("Not Authorized"); // Unauthorized
   }
 };
