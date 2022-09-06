@@ -1,6 +1,4 @@
-const Pool = require("pg").Pool; // 'pg' library used for interacting with PostgresDB.
-// Pool allows us to set a configuration for what/where we want to connect the DB.
-
+const { Pool } = require("pg"); // 'pg' library used for interacting with PostgresDB.
 require("dotenv").config(); 
 
 // Heroku > App > Settings
@@ -14,19 +12,30 @@ const devConfig = `postgres://${process.env.PG_USER}:${process.env.PG_PASSWORD}@
 //   port: process.env.PG_PORT,
 // };
 
-const proConfig = process.env.DATABASE_URL; // From Heroku Postgres
+console.log("Currently " + process.env.NODE_ENV);
 
 const pool = new Pool({
   connectionString:
-    process.env.NODE_ENV === "production" ? proConfig : devConfig,
+    process.env.NODE_ENV === "production"
+      ? process.env.DATABASE_URL
+      : devConfig,
 });
+
+// const pool = new Pool({
+//   connectionString:
+//     process.env.NODE_ENV === "production"
+//       ? process.env.DATABASE_URL
+//       : devConfig,
+//   ssl: {
+//     rejectUnauthorized: false,
+//   },
+// });
+
+// pool.connect();
 
 module.exports = pool; // This is the CommonJS version of 'export'
 
-// const pool = new Pool({
-//   connectionString : process.env.NODE_ENV === "production" ? proConfig : devConfig
-// });
-
+// Programmatic Method
 // const pool = new Pool({
 //   user: "postgres",
 //   password: "Pinecone250",
@@ -34,3 +43,10 @@ module.exports = pool; // This is the CommonJS version of 'export'
 //   host: "localhost",
 //   port: 5432,
 // });
+
+// // URI Method
+// const pool = new Pool({
+//   'postgresql://dbuser:secretpassword@database.server.com:3211/mydb',
+// })
+
+
