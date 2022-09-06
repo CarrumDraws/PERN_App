@@ -13,23 +13,16 @@ const devConfig = `postgres://${process.env.PG_USER}:${process.env.PG_PASSWORD}@
 // };
 
 console.log("Currently " + process.env.NODE_ENV);
-
+console.log("With DATABASE_URL: " + process.env.DATABASE_URL);
 const pool = new Pool({
   connectionString:
     process.env.NODE_ENV === "production"
       ? process.env.DATABASE_URL
       : devConfig,
+    ssl: {
+      rejectUnauthorized: false,
+    },
 });
-
-// const pool = new Pool({
-//   connectionString:
-//     process.env.NODE_ENV === "production"
-//       ? process.env.DATABASE_URL
-//       : devConfig,
-//   ssl: {
-//     rejectUnauthorized: false,
-//   },
-// });
 
 // pool.connect();
 
