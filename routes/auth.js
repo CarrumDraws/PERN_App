@@ -12,7 +12,7 @@ const authorization = require("../middleware/authorization");
 router.post("/register", validInfo, async (req, res) => {
     try {
         // 1. Destructure req.body (name, email, password)
-        console.log(req.body);
+        console.log("Hit Server : Register");
         const { name, email, password } = req.body;
 
         // 2. Check if User Exists- throw err if found
@@ -44,6 +44,7 @@ router.post("/register", validInfo, async (req, res) => {
 
 // LOGIN ROUTE ---
 router.post("/login", validInfo, async (req, res) => {
+    console.log("Hit Server: Login");
     try {
         // 1. Destructure req.body (email, password)
         const { email, password } = req.body;

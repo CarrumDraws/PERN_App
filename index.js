@@ -16,9 +16,6 @@ app.use(express.static(path.join(__dirname, "client/build")));
 //     app.use(express.static(path.join(__dirname, "client/build")));
 // }
 
-console.log("Server Directory is " + __dirname);
-console.log(path.join(__dirname, "client/build"));
-
 // ROUTES -----
 // Register + Login
 app.use("/auth", require("./routes/auth.js"));
