@@ -142,5 +142,3 @@ DONE!
 This makes it so client is smaller and faster to send.
 - The server we serve this on is different depending on if were in dev or prod. Dev uses 5000, prod uses heroku's servers. 
 - In order to use heroku's servers, we must utilize heroku.
-
-Hello
