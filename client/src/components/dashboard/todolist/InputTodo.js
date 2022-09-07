@@ -3,10 +3,6 @@ import React, { useEffect, useState } from "react";
 function InputTodo({ trigGetTodos }) {
   const [description, setDescription] = useState("");
 
-  useEffect(() => {
-    console.log("InputTodo Refresh");
-  }, []);
-
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {

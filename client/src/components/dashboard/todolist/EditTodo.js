@@ -4,10 +4,6 @@ function EditTodo({ todo, trigGetTodos }) {
   const [description, setDescription] = useState(todo.description);
   // Use a "Modal."
 
-  useEffect(() => {
-    console.log("EditTodos Refresh");
-  }, []);
-
   async function editText() {
     try {
       const myHeaders = new Headers();

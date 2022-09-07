@@ -23,7 +23,6 @@ function App() {
         headers: { token: localStorage.getItem("token") },
       });
       let parseRes = await response.json();
-      console.log("Authorization is " + parseRes);
       parseRes === true ? setAuth(true) : setAuth(false);
     } catch (err) {
       console.log(err);
@@ -61,7 +60,6 @@ function App() {
             }
           />
           <Route
-            exact
             path="/register"
             element={
               !isAuthenticated ? (
@@ -77,6 +75,16 @@ function App() {
             element={
               isAuthenticated ? (
                 <Dashboard setAuth={setAuth} />
+              ) : (
+                <Navigate to="/login" replace={true} />
+              )
+            }
+          />
+          <Route
+            path="*"
+            element={
+              isAuthenticated ? (
+                <Navigate to="/dashboard" replace={true} />
               ) : (
                 <Navigate to="/login" replace={true} />
               )

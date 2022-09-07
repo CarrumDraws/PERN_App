@@ -3,10 +3,6 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function Login({ setAuth }) {
-  useEffect(() => {
-    console.log("Login Remounted");
-  }, []);
-
   const [inputs, setInputs] = useState({ email: "", password: "" });
 
   const { email, password } = inputs;

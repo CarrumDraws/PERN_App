@@ -8,10 +8,6 @@ function Dashboard({ setAuth }) {
   const [allTodos, setAllTodos] = useState([]);
   const [name, setName] = useState("");
 
-  useEffect(() => {
-    console.log("Dashboard Remounted");
-  }, []);
-
   const getTodos = async () => {
     try {
       const response = await fetch("/dashboard/", {

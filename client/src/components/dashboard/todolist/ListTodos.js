@@ -2,9 +2,6 @@ import React, { useEffect, useState } from "react";
 import EditTodo from "./EditTodo";
 
 function ListTodos({ trigGetTodos, allTodos }) {
-  useEffect(() => {
-    console.log("ListTodos Refresh");
-  }, []);
 
   async function deleteTodo(id) {
     try {

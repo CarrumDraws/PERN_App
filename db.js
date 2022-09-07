@@ -18,7 +18,7 @@ const pool = new Pool({
     process.env.NODE_ENV === "production"
       ? process.env.DATABASE_URL // From Heroku-Postgres
       : devConfig,
-    ssl: {
+    ssl: { // Remove when run locally
       rejectUnauthorized: false,
     },
 });
