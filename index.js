@@ -10,11 +10,8 @@ const path = require("path"); // Work with directory paths
 app.use(express.json());
 app.use(cors()); // Allows different-domain app interaction
 
+// Serve static build files
 app.use(express.static(path.join(__dirname, "client/build")));
-
-// if (process.env.NODE_ENV === "production") {
-//     app.use(express.static(path.join(__dirname, "client/build")));
-// }
 
 // ROUTES -----
 // Register + Login
