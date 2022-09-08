@@ -81,7 +81,7 @@ function App() {
             }
           />
           <Route
-            path="*"
+            path="/*"
             element={
               isAuthenticated ? (
                 <Navigate to="/dashboard" replace={true} />
