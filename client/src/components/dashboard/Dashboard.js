@@ -10,7 +10,7 @@ function Dashboard({ setAuth }) {
 
   const getTodos = async () => {
     try {
-      const response = await fetch("/dashboard/", {
+      const response = await fetch("/dashboard", {
         method: "GET",
         headers: { token: localStorage.getItem("token") },
       });

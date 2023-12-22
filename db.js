@@ -1,5 +1,5 @@
 const { Pool } = require("pg");
-require("dotenv").config(); 
+require("dotenv").config();
 
 // Development
 // const devConfig = {
@@ -18,9 +18,10 @@ const pool = new Pool({
     process.env.NODE_ENV === "production"
       ? process.env.DATABASE_URL // From Heroku-Postgres
       : devConfig,
-    ssl: { // Remove when run locally
-      rejectUnauthorized: false,
-    },
+  ssl: {
+    // Remove when run locally
+    rejectUnauthorized: false,
+  },
 });
 
 module.exports = pool;
